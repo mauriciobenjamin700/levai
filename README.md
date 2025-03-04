@@ -2,6 +2,12 @@
 
 The LevAI project is about creating an AI to help you with software development, with a powerful senior developer helping you at every step.
 
+## Run
+
+```bash
+docker compose up -d --build
+```
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENCE.txt) file for more details.

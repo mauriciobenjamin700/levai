@@ -1,5 +1,5 @@
 """
-# API package
+# APP package
 
 Why do we need an API package?
 

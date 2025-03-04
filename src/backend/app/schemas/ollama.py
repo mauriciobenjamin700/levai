@@ -1,7 +1,5 @@
-from pydantic import (
-    Field,
-    field_validator
-)
+from pydantic import Field
+
 
 from src.schemas.base import BaseSchema
 

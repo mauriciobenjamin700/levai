@@ -1,5 +1,5 @@
 [project]
-name = "levai"
+name = "levai-backend"
 version = "0.1.0"
 description = "The LevAI project is about creating an AI to help you with software development, with a powerful senior developer helping you at every step."
 authors = [
@@ -9,7 +9,9 @@ license = "MIT"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "pydantic (>=2.10.6,<3.0.0)"
+    "pydantic (>=2.10.6,<3.0.0)",
+    "fastapi[standard] (>=0.115.11,<0.116.0)",
+    "sqlalchemy (>=2.0.38,<3.0.0)"
 ]
 
 

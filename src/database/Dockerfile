@@ -8,8 +8,7 @@ ENV POSTGRES_USER=postgres
 ENV POSTGRES_PASSWORD=postgres
 ENV POSTGRES_DB=postgres
 
-# Expose the port
-EXPOSE 5432
-
 # Start the database
 CMD ["postgres"]
+
+EXPOSE 5432

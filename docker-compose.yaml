@@ -26,18 +26,12 @@ services:
       context: "./src/database/"
       dockerfile: Dockerfile
     container_name: levai-db
+    ports:
+      - 5437:5432
     networks:
       - levai_network
     volumes:
       - levai-data:/var/lib/postgresql/data
-    
-  levai-api:
-    build:
-      context: "./src/api/"
-      dockerfile: Dockerfile
-    container_name: levai-api
-    networks:
-      - levai_network
   
   levai-models:
     image: ollama/ollama
@@ -51,3 +45,24 @@ services:
         reservations:
           devices:
             - capabilities: [gpu]
+
+  levai-api:
+    build:
+      context: "./src/api/"
+      dockerfile: Dockerfile
+    container_name: levai-api
+    networks:
+      - levai_network
+    depends_on:
+      - levai-db
+      - levai-models
+
+  levai-frontend:
+    build:
+      context: "./src/frontend/"
+      dockerfile: Dockerfile
+    container_name: levai-frontend
+    networks:
+      - levai_network
+    depends_on:
+      - levai-api

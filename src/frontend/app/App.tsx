@@ -1,8 +1,8 @@
 function App() {
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Seja bem vindo ao meu template</h1>
-      <p>Esse é um template de projeto com React, TypeScript e alguns ajustes que eu gosto nos meus projetos</p>
+      <h1>Seja bem vindo ao Projeto LevAI</h1>
+      <p>Este projeto é uma iniciativa open source para ajudar no desenvolvimento de software</p>
     </div>
   )
 }

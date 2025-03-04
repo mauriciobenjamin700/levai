@@ -8,6 +8,18 @@ The LevAI project is about creating an AI to help you with software development,
 docker compose up -d --build
 ```
 
+API
+
+```bash
+http://localhost:8087/api/
+```
+
+Models
+
+```bash
+http://localhost:8087/models/
+```
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENCE.txt) file for more details.

@@ -1,18 +1,53 @@
-# docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+networks:
+  levai_network:
+    driver: bridge
+
+volumes:
+  levai-data:
+    driver: local
+  levai-models:
+    driver: local
+
 
 services:
-  ollama:
-    image: ollama/ollama
-    container_name: ollama
+
+  levai-server:
+    build:
+      context: "./src/server/"
+      dockerfile: Dockerfile
+    container_name: levai-server
     ports:
-      - "11434:11434"
+      - 8087:80
+    networks:
+      - levai_network
+
+  levai-db:
+    build: 
+      context: "./src/database/"
+      dockerfile: Dockerfile
+    container_name: levai-db
+    networks:
+      - levai_network
     volumes:
-      - ollama-models:/root/.ollama
+      - levai-data:/var/lib/postgresql/data
+    
+  levai-api:
+    build:
+      context: "./src/api/"
+      dockerfile: Dockerfile
+    container_name: levai-api
+    networks:
+      - levai_network
+  
+  levai-models:
+    image: ollama/ollama
+    container_name: levai-models
+    networks:
+      - levai_network
+    volumes:
+      - levai-models:/root/.ollama
     deploy:
       resources:
         reservations:
           devices:
             - capabilities: [gpu]
-
-volumes:
-  ollama-models:

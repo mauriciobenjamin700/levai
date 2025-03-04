@@ -1,0 +1,1 @@
+Adicione suas funções úties (Conversões de tipos, formatos, etc) aqui

@@ -41,6 +41,7 @@ class Requests:
             - dict: JSON response
         """
         async with AsyncClient() as client:
+            print(f"{self.base_url}/{endpoint}")
             response = await client.post(f"{self.base_url}/{endpoint}", json=data)
             return response.json()
     
@@ -71,4 +72,19 @@ class Requests:
             response = await client.delete(f"{self.base_url}/{endpoint}")
             return response.json()
         
+    
+    async def post_stream(self, endpoint: str, data: dict):
+        """
+        Make a POST request with streaming
+        
+        - Args:
+            - endpoint: str: Endpoint to make the request to
+            - data: dict: Data to send in the request
+        - Returns:
+            - dict: JSON response
+        """
+        async with AsyncClient() as client:
+            async with client.stream("POST", f"{self.base_url}/{endpoint}", json=data) as response:
+                async for chunk in response.aiter_text():
+                    yield chunk
     

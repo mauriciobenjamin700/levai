@@ -28,8 +28,8 @@ class OllamaRequest(BaseSchema):
         - model: str: The model used to generate the response.
         - prompt: str: The prompt used to generate the response.
     """
-    model = model_field
-    prompt = prompt_field
+    model:str = model_field
+    prompt:str = prompt_field
     
 class OllamaMessage(BaseSchema):
     """
@@ -39,8 +39,8 @@ class OllamaMessage(BaseSchema):
         - role: str: The role of the message.
         - content: str: The content of the message.
     """
-    role = role_field
-    content = content_field
+    role:str = role_field
+    content:str = content_field
 
 class OllamaChatRequest(BaseSchema):
     """
@@ -50,7 +50,7 @@ class OllamaChatRequest(BaseSchema):
         - model: str: The model used to generate the response.
         - messages: list[OllamaMessage]: The messages in the chat.
     """
-    model = model_field
+    model:str = model_field
     messages: list[OllamaMessage]
 
 class OllamaResponse(BaseSchema):
@@ -70,14 +70,14 @@ class OllamaResponse(BaseSchema):
         - eval_count: int: The number of evaluations of the response.
         - eval_duration: int: The duration of evaluating the response in milliseconds.
     """
-    model = model_field
-    created_at = created_at_field
-    response = response_field
-    done = done_field
-    context = context_field
-    total_duration = total_duration_field
-    load_duration = load_duration_field
-    prompt_eval_count = prompt_eval_count_field
-    prompt_eval_duration = prompt_eval_duration_field
-    eval_count = eval_count_field
-    eval_duration = eval_duration_field
+    model:str = model_field
+    created_at:str = created_at_field
+    response:str = response_field
+    done:bool = done_field
+    context:list[int] | None = context_field
+    total_duration:int | None = total_duration_field
+    load_duration:int | None = load_duration_field
+    prompt_eval_count:int | None = prompt_eval_count_field
+    prompt_eval_duration:int | None = prompt_eval_duration_field
+    eval_count:int | None = eval_count_field
+    eval_duration:int | None = eval_duration_field

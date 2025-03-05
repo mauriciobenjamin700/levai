@@ -1,7 +1,7 @@
 from pydantic import Field
 
 
-content_field = Field(
+content_field:str = Field(
     title="Content",
     description="The content of the message.",
     examples=["why is the sky blue?"]
@@ -31,7 +31,7 @@ eval_duration_field: int = Field(
     description="The duration of evaluating the response in milliseconds.",
     examples=[736432000]
 )
-load_duration_field:  int = Field(
+load_duration_field: int = Field(
     title="Load Duration",
     description="The duration of loading the model in milliseconds.",
     examples=[2559292]
@@ -72,7 +72,7 @@ total_duration_field: int = Field(
     description="The total duration of the request in milliseconds.",
     examples=[2938432250]
 )
-role_field = Field(
+role_field: str = Field(
     title="Role",
     description="The role of the message.",
     examples=["user"]

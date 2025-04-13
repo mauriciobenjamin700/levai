@@ -1,1 +1,0 @@
-Crie suas constantes nesta pasta

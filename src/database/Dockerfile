@@ -1,14 +1,17 @@
-FROM postgres:17.4-alpine3.21
+FROM postgres:17.4
 
-# Copy the database schema to the container
-COPY schema.sql /docker-entrypoint-initdb.d/
+RUN apt-get update && apt-get install -y make
 
-# Set the environment variables
-ENV POSTGRES_USER=postgres
-ENV POSTGRES_PASSWORD=postgres
-ENV POSTGRES_DB=postgres
+COPY Makefile /scripts/Makefile
 
-# Start the database
-CMD ["postgres"]
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_NAME
+
+ENV POSTGRES_USER=$DB_USER
+ENV POSTGRES_PASSWORD=$DB_PASSWORD
+ENV POSTGRES_DB=$DB_NAME
+
+WORKDIR /scripts
 
 EXPOSE 5432

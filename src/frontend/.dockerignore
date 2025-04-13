@@ -1,0 +1,4 @@
+.gitignore
+*.md
+node_modules
+docs

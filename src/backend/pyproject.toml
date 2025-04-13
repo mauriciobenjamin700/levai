@@ -1,0 +1,61 @@
+[project]
+name = "template-api-fastapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.21.0",
+    "asyncpg>=0.30.0",
+    "bcrypt>=4.3.0",
+    "fastapi>=0.115.11",
+    "httpx>=0.28.1",
+    "pydantic>=2.10.6",
+    "pydantic-settings>=2.8.1",
+    "python-decouple>=3.8",
+    "pyyaml>=6.0.2",
+    "sqlalchemy>=2.0.39",
+    "uvicorn>=0.34.0",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "pre-commit>=4.2.0",
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.25.3",
+    "ruff>=0.11.2",
+]
+
+[tool.ruff]
+lint.select = [
+    "F401",  # Remove imports não utilizados
+    "N802",  # Nomes de métodos devem ser snake_case
+    "N803",  # Nomes de variáveis devem ser snake_case
+    "N806",  # Nomes de constantes devem ser UPPER_CASE
+    "E302",  # Exige 2 linhas em branco antes de funções e classes
+    "E305",  # Exige 2 linhas em branco após o final de uma classe ou função
+    "D101",  # Classes públicas devem ter docstring
+    "D102",  # Métodos públicos devem ter docstring
+    "D103",  # Funções públicas devem ter docstring
+    "W292",  # Arquivos devem terminar com uma nova linha
+    "W391",  # Remove linhas em branco desnecessárias no final do arquivo
+]
+lint.fixable = ["E302", "E305", "F401", "W292", "W391"]  # Adicione regras que podem ser corrigidas automaticamente
+line-length = 79
+preview = true
+
+[tool.black]
+line-length = 79
+skip-string-normalization = false
+ensure-newline-at-eof = true  # G
+
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79

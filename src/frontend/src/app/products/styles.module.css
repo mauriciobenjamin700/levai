@@ -1,0 +1,7 @@
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 50px;
+    background-color: red;
+}

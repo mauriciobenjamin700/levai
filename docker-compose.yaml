@@ -10,34 +10,33 @@ volumes:
 
 
 services:
-
-  levai-server:
+  levai-database:
+    container_name: levai-database
     build:
-      context: "./src/server/"
+      context: ./src/database
       dockerfile: Dockerfile
-    container_name: levai-server
-    ports:
-      - 8087:80
+      args:
+        DB_USER: ${DB_USER}
+        DB_PASSWORD: ${DB_PASSWORD}
+        DB_NAME: ${DB_NAME}
     networks:
       - levai_network
-
-  levai-db:
-    build: 
-      context: "./src/database/"
-      dockerfile: Dockerfile
-    container_name: levai-db
     ports:
-      - 5437:5432
-    networks:
-      - levai_network
+      - "5432:5432"
     volumes:
-      - levai-data:/var/lib/postgresql/data
-  
+      -  levai-data:/var/lib/postgresql/data
+      - ./database/backups:/backups
+    restart: always
+    env_file:
+      - .env
   levai-models:
     image: ollama/ollama
     container_name: levai-models
     networks:
       - levai_network
+    ports:
+      - "11434:11434"
+    restart: always
     volumes:
       - levai-models:/root/.ollama
     deploy:
@@ -45,24 +44,45 @@ services:
         reservations:
           devices:
             - capabilities: [gpu]
-
-  levai-api:
+  levai-backend:
+    container_name: levai-backend
     build:
-      context: "./src/api/"
+      context: ./src/backend/
       dockerfile: Dockerfile
-    container_name: levai-api
     networks:
       - levai_network
+    ports:
+      - "8000:8000"
     depends_on:
-      - levai-db
+      - levai-database
       - levai-models
-
+    restart: always
+    env_file:
+      - .env
   levai-frontend:
-    build:
-      context: "./src/frontend/"
-      dockerfile: Dockerfile
     container_name: levai-frontend
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
     networks:
       - levai_network
+    ports:
+      - "3000:3000"
     depends_on:
-      - levai-api
+      - levai-backend
+    restart: always
+    env_file:
+      - .env
+  levai-server:
+    container_name: levai-server
+    build:
+      context: ./src/server
+      dockerfile: Dockerfile
+    networks:
+      - levai_network
+    ports:
+      - "80:80"
+    depends_on:
+      - levai-backend
+      - levai-frontend
+    restart: always

@@ -1,15 +1,16 @@
-FROM node:23-alpine
+FROM node:23-alpine3.21
 
-WORKDIR /frontend
+WORKDIR /app
 
-COPY . .
+COPY package.json .
+COPY package-lock.json .
 
 RUN npm install
 
+COPY . .
+
 RUN npm run build
 
-RUN npm install -g serve
-
-CMD ["serve", "-s", "dist", "-l", "3000"]
-
 EXPOSE 3000
+
+CMD ["npm", "-run", "start"]

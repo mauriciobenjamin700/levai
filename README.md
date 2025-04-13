@@ -63,3 +63,17 @@ docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ol
 - [DockerHub ollama](https://hub.docker.com/r/ollama/ollama)
 - [RestAPI ollama](https://github.com/ollama/ollama/blob/main/docs/api.md)
 - [Python Lib](https://github.com/ollama/ollama-python)
+
+## Local Env
+
+- Create a `.env` file in project root and put this data:
+
+```bash
+DB_URL="postgresql+asyncpg://user:password@database:5432/db"
+DB_USER="user"
+DB_PASSWORD="password"
+DB_HOST="database"
+DB_PORT="5432"
+DB_NAME="db"
+TEST_DB_URL="sqlite+aiosqlite:///:memory:"
+```

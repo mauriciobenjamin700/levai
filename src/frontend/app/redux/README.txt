@@ -1,1 +1,0 @@
-Configure seu redux aqui

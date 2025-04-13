@@ -39,6 +39,11 @@ class Settings(BaseSettings):
         description="URL do banco de dados de teste",
         default="sqlite+aiosqlite:///:memory:",
     )
+    OLLAMA_URL: str = Field(
+        title="URL do servidor Ollama",
+        description="URL do servidor Ollama",
+        default="http://localhost:11434",
+    )
 
     model_config = SettingsConfigDict(env_file=".env", case_sensitive=True)
 

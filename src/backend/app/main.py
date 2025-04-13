@@ -3,6 +3,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from app.api.endpoints.ia import router as ia_router
 from app.api.endpoints.user import router as user_router
 from app.api.middlewares.error import CustomErrorMiddleware
 
@@ -50,6 +51,7 @@ async def validation_exception_handler(
 
 
 # Incluindo os roteadores
+app.include_router(ia_router)
 app.include_router(user_router)
 
 

@@ -22,7 +22,7 @@ RUN rm pyproject.toml uv.lock requirements.txt
 
 ENV PATH="/root/.local/bin:$PATH"
 
-COPY logging_config.yaml .
+#COPY logging_config.yaml .
 COPY main.py .
 
 COPY app ./app

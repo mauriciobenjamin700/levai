@@ -26,7 +26,7 @@ async def main():
         host="0.0.0.0",
         port=8000,
         log_level="info",
-        log_config="logging_config.yaml"  # Apontar para o arquivo de configuração de log
+        #log_config="logging_config.yaml"  # Apontar para o arquivo de configuração de log
     )
 
     server = uvicorn.Server(config)

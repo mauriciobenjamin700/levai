@@ -69,11 +69,12 @@ docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama ol
 - Create a `.env` file in project root and put this data:
 
 ```bash
-DB_URL="postgresql+asyncpg://user:password@database:5432/db"
+DB_URL="postgresql+asyncpg://user:password@levai-database:5432/db"
 DB_USER="user"
 DB_PASSWORD="password"
-DB_HOST="database"
+DB_HOST="levai-database"
 DB_PORT="5432"
 DB_NAME="db"
 TEST_DB_URL="sqlite+aiosqlite:///:memory:"
+OLLAMA_URL="http://levai-models:11434"
 ```

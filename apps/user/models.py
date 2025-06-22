@@ -1,6 +1,7 @@
 """Models for the user app."""
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from uuid import uuid4
 
 
 class User(AbstractUser):
@@ -8,7 +9,7 @@ class User(AbstractUser):
     Custom user model that extends the default Django user model.
 
     Attributes:
-        id (int) : Unique identifier for the user.
+        id (str) : Unique identifier for the user.
         first_name (str) : First name of the user.
         last_name (str) : Last name of the user.
         username (str) : Unique username for the user.
@@ -20,6 +21,7 @@ class User(AbstractUser):
         data_joined (datetime) : Date and time when the user joined.
         last_login (datetime) : Date and time of the user's last login.
     """
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -50,7 +52,7 @@ class User(AbstractUser):
             dict: Dictionary representation of the user instance.
         """
         return {
-            "id": self.id if hasattr(self, 'id') else None,
+            "id": str(self.id) if hasattr(self, 'id') else None,
             "username": self.username,
             "email": self.email,
             "first_name": self.first_name,

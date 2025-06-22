@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "apps.user",
+    "apps.chat",
 ]
 
 MIDDLEWARE = [
@@ -125,4 +126,7 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# CUSTOM SETTINGS
+
 AUTH_USER_MODEL = "user.User"
+LOGIN_URL = "/auth/login/"

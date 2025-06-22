@@ -42,24 +42,30 @@ class User(AbstractUser):
         # ]
 
     def __str__(self):
-        return self.username
+        return " ,".join([f"{key}: {value}" for key, value in self.to_dict().items()])
     
-    def to_dict(self):
+    def to_dict(self, exclude: list[str] = [], include: dict = {}) -> dict:
         """
         Convert the user instance to a dictionary.
 
         Returns:
             dict: Dictionary representation of the user instance.
         """
-        return {
+        data = {
             "id": str(self.id) if hasattr(self, 'id') else None,
             "username": self.username,
             "email": self.email,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
+            "name": f"{self.first_name} {self.last_name}".strip(),
             "is_active": self.is_active,
             "is_staff": self.is_staff,
             "is_superuser": self.is_superuser,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
+
+        for field in exclude:
+            data.pop(field, None)
+
+        data.update(include)
+
+        return data

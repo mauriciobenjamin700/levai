@@ -22,7 +22,7 @@ services:
     networks:
       - levai_network
     ports:
-      - "5432:5432"
+      - "5440:5432"
     volumes:
       -  levai-data:/var/lib/postgresql/data
       - ./database/backups:/backups
@@ -52,7 +52,7 @@ services:
     networks:
       - levai_network
     ports:
-      - "8000:8000"
+      - "8040:8000"
     depends_on:
       - levai-database
       - levai-models
@@ -67,7 +67,7 @@ services:
     networks:
       - levai_network
     ports:
-      - "3000:3000"
+      - "3040:3000"
     depends_on:
       - levai-backend
     restart: always

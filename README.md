@@ -11,13 +11,7 @@ docker compose up -d --build
 API
 
 ```bash
-http://localhost:8087/api/
-```
-
-Models
-
-```bash
-http://localhost:8087/models/
+http://localhost:8040/api/
 ```
 
 ## License

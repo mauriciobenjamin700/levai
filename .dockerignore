@@ -1,7 +1,12 @@
+.ruff_cache/
 .venv/
+database/
 docs/
 __pycache__/
 *.pyc
 .gitignore
 .python-version
 LICENCE.txt
+pyproject.toml
+README.md
+uv.lock

@@ -1,0 +1,17 @@
+FROM postgres:17.4
+
+RUN apt-get update && apt-get install -y make
+
+COPY Makefile /scripts/Makefile
+
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_NAME
+
+ENV POSTGRES_USER=$DB_USER
+ENV POSTGRES_PASSWORD=$DB_PASSWORD
+ENV POSTGRES_DB=$DB_NAME
+
+WORKDIR /scripts
+
+EXPOSE 5432

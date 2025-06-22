@@ -13,7 +13,7 @@ services:
   levai-database:
     container_name: levai-database
     build:
-      context: ./src/database
+      context: ./database
       dockerfile: Dockerfile
       args:
         DB_USER: ${DB_USER}
@@ -44,3 +44,20 @@ services:
         reservations:
           devices:
             - capabilities: [gpu]
+
+
+  levai-app:
+    container_name: levai-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - levai_network
+    ports:
+      - "8040:8000"
+    depends_on:
+      - levai-database
+      - levai-models
+    restart: always
+    env_file:
+      - .env

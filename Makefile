@@ -1,6 +1,18 @@
 start:
 	@docker compose up -d --build
 	@docker exec -it levai-models ollama pull DeepSeek-R1
+	@docker exec -it levai-models ollama pull llama3.2
+	@docker exec -it levai-app python manage.py migrate
+
+generate-dependencies:
+	uv pip compile pyproject.toml -o requirements.txt
+
+
+run-migrations:
+	python3 manage.py migrate
+
+create-app:
+	python3 manage.py startapp $(app_name)
 
 kabum:
 	@docker system prune -a --force

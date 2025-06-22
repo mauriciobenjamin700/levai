@@ -1,3 +1,3 @@
-from django.db import models
+"""Models for the user app."""
 
 # Create your models here.

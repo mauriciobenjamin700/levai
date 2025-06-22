@@ -4,6 +4,11 @@ start:
 	@docker exec -it levai-models ollama pull llama3.2
 	@docker exec -it levai-app python manage.py migrate
 
+
+lint-fix:
+	black .
+	ruff check . --fix
+
 generate-dependencies:
 	uv pip compile pyproject.toml -o requirements.txt
 

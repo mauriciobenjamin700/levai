@@ -7,3 +7,30 @@ requires-python = ">=3.13"
 dependencies = [
     "django>=5.2.3",
 ]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "ruff>=0.12.0",
+]
+
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors (inclui E501 para limite de linha, E302 para espaçamento)
+    "F",    # pyflakes (detecta valores não usados)
+    "W",    # pycodestyle warnings
+    "D",    # pydocstyle (docstrings obrigatórias)
+    "I",    # isort (ordem dos imports)
+]
+ignore = [
+    "D203", # conflito com D211
+    "D213", # conflito com D212
+]
+# E302 já está incluído em "E"
+
+[tool.ruff.format]
+quote-style = "double"

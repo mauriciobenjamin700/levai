@@ -12,12 +12,21 @@ lint-fix:
 generate-dependencies:
 	uv pip compile pyproject.toml -o requirements.txt
 
+create-migrations:
+	python3 manage.py makemigrations
 
 run-migrations:
 	python3 manage.py migrate
 
 create-app:
 	python3 manage.py startapp $(app_name)
+
+
+reset-db:
+	@echo "Resetting the database..."
+	rm db.sqlite3
+	find . -path "*/migrations/*.pyc"  -delete
+	find . -path "*/migrations/*.py" ! -name "__init__.py" -delete
 
 kabum:
 	@docker system prune -a --force

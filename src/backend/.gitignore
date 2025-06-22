@@ -1,9 +1,0 @@
-*.pyc
-*__pycache__/
-*.egg-info/
-*.egg
-.venv
-venv
-
-*.ruff_cache
-*.log
